@@ -1,0 +1,43 @@
+from django.urls import path
+from . import listaTFT, puntosMundial, buscarTFT, studyDataTFT, generalstudyDataTFT, \
+    competitivoESP, rivales, listaTFTEU, actualizaPartidos, checkTwitchUser, checkSummonerName
+
+urlpatterns = [
+    path('listaTFT', listaTFT.listaTFT, name='listaTFT'),
+    path('online', listaTFT.listaTFTonline, name='online'),
+    path('listaTFTEU/<str:liga>', listaTFTEU.listaTFTEU, name='listaTFTEU'),
+    path('buscarTFT/<str:jug_cuenta>', buscarTFT.buscarTFT, name='buscarTFT'),
+    path('puntosMundialFates', puntosMundial.listaTFTdataFates, name='puntosMundialFates'),
+    path('puntosMundialReckoning', puntosMundial.listaTFTdataReckoning, name='puntosMundialReckoning'),
+    path('puntosMundialFatesEU', puntosMundial.listaTFTdataFatesEU, name='puntosMundialFatesEU'),
+    path('snapshotsESP/<int:setTFT>/<str:numeroSnapshot>', competitivoESP.snapshotsESP, name='snapshotsESP'),
+    path('snapshotsEU/<int:setTFT>/<str:numeroSnapshot>', competitivoESP.snapshotsEU, name='snapshotsEU'),
+    path('cupsESP/<int:setTFT>/<str:numeroCopa>', competitivoESP.cupsESP, name='cupsESP'),
+    path('GSCEU/<int:setTFT>/<str:numeroGSC>', competitivoESP.GSCEU, name='GSCEU'),
+    path('totalESP/<int:setTFT>', competitivoESP.totalESP, name='totalESP'),
+    path('totalSnapESP/<int:setTFT>', competitivoESP.totalSnapESP, name='totalSnapESP'),
+    path('totalCupsESP/<int:setTFT>', competitivoESP.totalCupsESP, name='totalSnapESP'),
+    path('totalSnapEU/<int:setTFT>', competitivoESP.totalSnapEU, name='totalSnapEU'),
+    path('totalSnapEU2/<int:setTFT>', competitivoESP.totalSnapEU2, name='totalSnapEU2'),
+    path('totalGSCEU/<int:setTFT>', competitivoESP.totalGSCEU, name='totalGSCEU'),
+    path('actualizaTFT', listaTFT.actualizaTFT, name='actualizaTFT'),
+    path('actualizaPartidos', actualizaPartidos.actualizaPartidos, name='actualizaPartidos'),
+    path('actualizaTwitch', checkTwitchUser.actualizaTwitch, name='actualizaTwitch'),
+    path('actualizaSummonerName', checkSummonerName.checkSummoner, name='actualizaSummonerName'),
+    path('actualizaDatos', generalstudyDataTFT.actualizaDatos, name='actualizaDatos'),
+    path('buscaRivales', rivales.buscaRivales, name='buscaRivales'),
+    path('datosJugadores/<str:jug_cuenta>', studyDataTFT.lineData, name='datosJugadores'),
+    path('rivales/<str:jug_cuenta>', rivales.rivales, name='rivales'),
+    path('datosTFT/<str:setTFT>', generalstudyDataTFT.lineData, name='datosTFT'),
+    path('top1Esp/<str:setTFT>', generalstudyDataTFT.top1Esp, name='top1Esp'),
+    path('top1EU/<str:setTFT>', listaTFTEU.top1EU, name='top1EU'),
+    path('hottestStreakList/<str:numero>', generalstudyDataTFT.hottestStreakList, name='hottestStreakList'),
+    path('coldestStreakList/<str:numero>', generalstudyDataTFT.coldestStreakList, name='coldestStreakList'),
+    path('rachaMasList/<str:numero>', generalstudyDataTFT.rachaMasList, name='rachaMasList'),
+    path('rachaMenosList/<str:numero>', generalstudyDataTFT.rachaMenosList, name='rachaMenosList'),
+    path('masVictList/<str:numero>', generalstudyDataTFT.masVictList, name='masVictList'),
+    path('masWRList/<str:numero>', generalstudyDataTFT.masWRList, name='masWRList'),
+    path('masVicioList/<str:numero>', generalstudyDataTFT.masVicioList, name='masVicioList'),
+    path('picosLPsList/<str:numero>', generalstudyDataTFT.picosLPsList, name='picosLPsList'),
+
+]
