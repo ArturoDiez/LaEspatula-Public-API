@@ -1,6 +1,6 @@
 from django.urls import path
 from . import listaTFT, puntosMundial, buscarTFT, studyDataTFT, generalstudyDataTFT, \
-    competitivoESP, rivales, listaTFTEU, actualizaPartidos, checkTwitchUser, checkSummonerName
+    competitivoESP, rivales, listaTFTEU, actualizaPartidos, checkTwitchUser, checkSummonerName, vacuumDB
 
 urlpatterns = [
     path('listaTFT', listaTFT.listaTFT, name='listaTFT'),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('actualizaTwitch', checkTwitchUser.actualizaTwitch, name='actualizaTwitch'),
     path('actualizaSummonerName', checkSummonerName.checkSummoner, name='actualizaSummonerName'),
     path('actualizaDatos', generalstudyDataTFT.actualizaDatos, name='actualizaDatos'),
+    path('vacuumDB', vacuumDB.vacuum_db, name='vacuumDB'),
     path('buscaRivales', rivales.buscaRivales, name='buscaRivales'),
     path('datosJugadores/<str:jug_cuenta>', studyDataTFT.lineData, name='datosJugadores'),
     path('rivales/<str:jug_cuenta>', rivales.rivales, name='rivales'),
