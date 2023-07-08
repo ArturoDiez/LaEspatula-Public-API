@@ -14,10 +14,11 @@ def listaTFTEU(request, liga):
     Master = datosCompetitivo.objects.get(tipo="Master")
 
     top26 = 0
-    if len(Challenger.datos) > 26:
-        top26 = Challenger.datos[int(puesto) - 1]["leaguePoints"]
-    else:
-        top26 = Challenger.datos[-1]["leaguePoints"]
+    if len(Challenger.datos) > 2:
+        if len(Challenger.datos) > 26:
+            top26 = Challenger.datos[int(puesto) - 1]["leaguePoints"]
+        else:
+            top26 = Challenger.datos[-1]["leaguePoints"]
     corteCh = 0
     corteGM = 0
 

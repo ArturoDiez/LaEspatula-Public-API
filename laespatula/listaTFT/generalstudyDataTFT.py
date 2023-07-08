@@ -190,7 +190,7 @@ def actualizaDatos(request):
     for jugador in jugadores:
         playerQuery = studyDataJugadoresTFT.objects.filter(cuenta=jugador.cuenta)
         for player in playerQuery:
-            datos = player.set8BELO
+            datos = player.set9ELO
             if datos is not None:
                 tamaño = len(datos)
             else:
@@ -263,8 +263,8 @@ def coldestStreaks(player):
     for i in range(1, tamaño):
         j = str(i)
         LP = datos[j]['LP']
-        diff = -(LP - LPantes)
-        if diff > 0:
+        diff = (LP - LPantes)
+        if diff < 0:
             coldStreak += diff
         else:
             coldStreak = 0
@@ -277,7 +277,7 @@ def rachaParche(player):
     ahora = timezone.localtime(timezone.now())
     dateTime = ahora.strftime('%Y-%m-%d %H:%M')
     ultimoParche = "2022-01-01"
-    datos = player.set8BELO
+    datos = player.set9ELO
     tamaño = len(datos)
 
     LPinicial = 0
@@ -303,7 +303,7 @@ def rachaParche(player):
 
 def picoLPs(player):
     pico = 0
-    datos = player.set8BELO
+    datos = player.set9ELO
     if datos is None:
         tamaño = 0
     else:

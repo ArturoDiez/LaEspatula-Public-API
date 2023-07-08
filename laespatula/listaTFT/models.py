@@ -48,6 +48,7 @@ class studyDataJugadoresTFT(models.Model):
     set8Data = models.JSONField(null=True)
     set8ELO = models.JSONField(null=True)
     set8BELO = models.JSONField(null=True)
+    set9ELO = models.JSONField(null=True)
     streak = models.IntegerField(default=0)
     LPsParche = models.IntegerField(default=0)
 

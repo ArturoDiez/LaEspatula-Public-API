@@ -37,6 +37,7 @@ def lineData(request, jug_cuenta):
     dataJug = JugadorTFTListaSerializer(jugador, many=True).data
 
     start_date = (datetime.today() - timedelta(days=5)).strftime('%Y-%m-%d')
+    print(start_date)
 
     for j in jugador:
         players = studyDataJugadoresTFT.objects.filter(jugadorTFT=j)
@@ -46,7 +47,7 @@ def lineData(request, jug_cuenta):
 
     if len(players) != 0:
         for player in players:
-            datos = player.set8BELO
+            datos = player.set9ELO
             if datos != {} and datos is not None:
                 hottestStreak, hotStreak = hottestStreaks(player)
                 coldestStreak, coldStreak = coldestStreaks(player)
@@ -56,16 +57,17 @@ def lineData(request, jug_cuenta):
 
             for i in range(0, tamaño):
                 j = str(i)
+                print(datos[j]['datetime'])
                 if start_date > datos[j]['datetime']:
                     continue
                 labels.append(datos[j]['datetime'])
                 data.append(datos[j]['LP'])
                 league.append(datos[j]['liga'])
 
-                posMed = posMedia(player, tamaño)
+                #posMed = posMedia(player, tamaño)
 
     data = {'jugador': dataJug, 'labels': labels, 'elo': data, 'league': league,
-            'rachaP': rachaP, 'pico': pico, 'posMed': posMed,
+            'rachaP': rachaP, 'pico': pico,
             'tamaño': tamaño, 'hotStreak': hotStreak, 'hottestStreak': hottestStreak,
             'coldStreak': coldStreak, 'coldestStreak': coldestStreak}
 
@@ -75,7 +77,7 @@ def lineData(request, jug_cuenta):
 def hottestStreaks(player):
     hottestStreak = 0
     hotStreak = 0
-    datos = player.set8Data
+    datos = player.set9ELO
     if datos is not None:
         tamaño = len(datos)
         LPantes = datos['0']['LP']
@@ -101,7 +103,7 @@ def hottestStreaks(player):
 def coldestStreaks(player):
     coldestStreak = 0
     coldStreak = 0
-    datos = player.set8Data
+    datos = player.set9ELO
     if datos is not None:
         tamaño = len(datos)
         LPantes = datos['0']['LP']
@@ -130,7 +132,7 @@ def rachaParche(player):
     LPinicial = 0
     haJugado = False
     streak = 0
-    datos = player.set8BELO
+    datos = player.set9ELO
     if datos is not None:
         tamaño = len(datos)
     else:
@@ -156,7 +158,7 @@ def rachaParche(player):
 
 def picoLPs(player):
     pico = 0
-    datos = player.set8Data
+    datos = player.set9ELO
     if datos is not None:
         tamaño = len(datos)
     else:
@@ -173,7 +175,7 @@ def picoLPs(player):
 def posMedia(player, tamaño):
     media = 0
     placements = list()
-    datos = player.set8Data
+    datos = player.set9ELO
     if datos is not None:
         tdatos = len(datos)
     else:

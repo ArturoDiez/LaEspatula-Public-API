@@ -189,7 +189,7 @@ def top1EspAct() -> None:
             nuevoTop.cuenta = listaTFTTop1[0].cuenta
             nuevoTop.start_date = dateTime
             nuevoTop.actual = True
-            nuevoTop.set = 8.5
+            nuevoTop.set = 9
             nuevoTop.save()
 
 
@@ -212,7 +212,7 @@ def top1EUAct() -> None:
         nuevoTop.cuenta = listaChallenger.datos[0]['summonerName']
         nuevoTop.start_date = dateTime
         nuevoTop.actual = True
-        nuevoTop.set = 8.5
+        nuevoTop.set = 9
         nuevoTop.save()
 
 
@@ -251,7 +251,7 @@ def storeELO(listaJugadores) -> None:
         else:
             for dataJugador in listDataJugadores:
                 if jugador == dataJugador.jugadorTFT:
-                    data = dataJugador.set8BELO
+                    data = dataJugador.set9ELO
 
                     if data is not None:
                         lastValue = len(data) - 1
@@ -268,7 +268,7 @@ def storeELO(listaJugadores) -> None:
                                 }
                         json.dumps(data)
 
-                    dataJugador.set8BELO = data
+                    dataJugador.set9ELO = data
                     if dataJugador.cuenta != jugador.cuenta:
                         dataJugador.cuenta = jugador.cuenta
                     dataJugador.save()
